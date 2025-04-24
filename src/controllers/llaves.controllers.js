@@ -2,7 +2,7 @@ import db from "../db.js";
 
 export const getLlaves = async (req, res) => {
     const { id_usuario } = req.user;
-    console.log("Solicitud de lecciones");
+    console.log("Se hizo una solicitud de las llaves que tiene el usuario " + id_usuario);
 
     try {
         let [result] = await db.execute(`select celular, nombre, apellido from empresarios where id_usuario=${id_usuario}`);
