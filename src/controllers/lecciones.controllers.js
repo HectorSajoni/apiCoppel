@@ -11,7 +11,6 @@ export const getLecciones = async (req, res) => {
                 where celular_empresario='${empresario.celular}' and gastado=0`)
             empresario['lecciones'] = lecs.lecciones;
         }
-        if(result.length === 0) return res.status(404).json({message: "No hay ningún empresario"});
         res.json(result);
 
     } catch(err) {

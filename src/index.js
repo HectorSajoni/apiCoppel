@@ -6,6 +6,7 @@ import empleadosRoutes from './routes/empleados.routes.js'
 import empresariosRoutes from './routes/empresarios.routes.js'
 import loginRoutes from './routes/login.routes.js'
 import leccionesRoutes from './routes/lecciones.routes.js'
+import llavesRoutes from './routes/llaves.routes.js'
 
 const app = express()
 
@@ -15,6 +16,7 @@ app.use(empleadosRoutes)
 app.use(empresariosRoutes)
 app.use(loginRoutes)
 app.use(leccionesRoutes)
+app.use(llavesRoutes)
 
 app.listen(PORT);
 console.log("Server on port ", PORT);
