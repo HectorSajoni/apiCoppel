@@ -16,11 +16,5 @@ app.use(empresariosRoutes)
 app.use(loginRoutes)
 app.use(leccionesRoutes)
 
-const router = Router();
-router.get('/', async (req, res) => {
-    console.log("Se accedió al dominio")
-    res.json({"message": "Bienvenido"});
-});
-
 app.listen(PORT);
 console.log("Server on port ", PORT);

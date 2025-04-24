@@ -6,7 +6,7 @@ import { JWT_SECRET } from '../config.js'
 
 export const registro = async (req, res) => {
     const { id_usuario, nombre, apellido, password } = req.body;
-    let [[reg]] = await db2.execute(`select * from empleados where id=${id_usuario}`)
+    let [[reg]] = await db2.execute(`select * from usuarios where id=${id_usuario}`)
     console.log(reg);
     if(!reg || apellido != reg.apellido || nombre != reg.nombre)
         return res.status(400).json({message:`El número de empleado no existe o los datos no coinciden`})
