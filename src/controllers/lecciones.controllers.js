@@ -8,8 +8,7 @@ async function obtenerLeccionesTotales(id_usuario) {
             where celular_empresario='${empresario.celular}' and gastado=0`)
         lecciones += lecs.lecciones;
     }
-    let llaves = Math.trunc(lecciones/leccionesPorLlave);
-    return llaves;
+    return lecciones;
 }
 
 async function obtenerRecompensas() {
