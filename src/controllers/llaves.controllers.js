@@ -1,6 +1,6 @@
 import db from "../db.js";
 
-export const getLecciones = async (req, res) => {
+export const getLlaves = async (req, res) => {
     const { id_usuario } = req.user;
     console.log("Solicitud de lecciones");
 

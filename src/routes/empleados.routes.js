@@ -13,7 +13,7 @@ const router = Router();
 router.get('/empleados', verifyToken, verifyRol('admin'), getEmpleados);
 
 // Método para ver la información propia del empleado
-router.get('/empleados/:numero', verifyToken, verifyRol('empleado'), getEmpleadosId);
+router.get('/empleadosId', verifyToken, verifyRol('empleado'), getEmpleadosId);
 
 // Actualizar empleado
 router.put('/empleados', verifyToken, verifyRol('empleado'), putEmpleados);

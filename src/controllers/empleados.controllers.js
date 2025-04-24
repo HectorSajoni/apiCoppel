@@ -1,31 +1,29 @@
 import db from "../db.js";
 
 export const getEmpleados = async (req, res) => {
-    console.log(req.headers)
-    const { numero } = req.params;
-    console.log("Procesando get");
+    console.log("Se recibió una petición getEmpleados (admin exclusive)");
     let [result] = await db.execute(`select id, nombre, apellido from usuarios`);
     res.json(result);
 };
 
 export const getEmpleadosId = async (req, res) => {
-    const { numero } = req.params;
-    console.log("Procesando get");
+    const { id_usuario } = req.user;
+    console.log("Se recibió una petición para ver al empleado de id " + id_usuario);
     try {
-        let [result] = await db.execute(`select * from usuarios where id=${numero}`);
-        console.log(result)
-        if(result.length === 0) res.status(404).json({message: "Usuario no encontrado"});
-        else res.json(result[0]);
+        // la variable result es un arreglo
+        let [result] = await db.execute(`select * from usuarios where id=${id_usuario}`);
+        res.json(result[0]);
     } catch(err) {
         console.log(err);
-        res.status(400).json({message: "Solicitud mal hecha"});
+        res.status(400).json({message: "Solicitud incorrecta"});
     }
-}
+};
 
 
 export const putEmpleados = async (req, res) => {
-    const { id_usuario, nombre, apellido, password } = req.body;
-    console.log("Editando usuario");
+    const {nombre, apellido, password } = req.body;
+    const { id_usuario } = req.user
+    console.log("Se recibió una solicitud para editar al empleado " + id_usuario);
     try {
         let [{affectedRows}] = await db.execute(`update usuarios set 
             nombre='${nombre}', apellido='${apellido}', password='${password}'
@@ -33,8 +31,7 @@ export const putEmpleados = async (req, res) => {
         if(affectedRows===1) res.json({message: "Usuario actualizado"});
         else res.status(404).json({message: "Usuario no encontrado"});
     } catch(err) {
-        console.log(err);
-        res.status(400).json({message: "Solicitud mal hecha"});
+        res.status(400).json({message: "Solicitud incorrecta"});
     }
 };
 
@@ -45,9 +42,7 @@ export const deleteEmpleados = async (req, res) => {
         let [{affectedRows}] = await db.execute(`delete from usuarios where id=${id_usuario}`);
         if(affectedRows===1) res.json({message: "Usuario borrado"});
         else res.status(404).json({message: "Usuario no encontrado"});
-        console.log(affectedRows)
     } catch(err) {
-        console.log(err);
-        res.status(400).json({message: "Solicitud mal hecha"});
+        res.status(400).json({message: "Solicitud incorrecta"});
     }
 };

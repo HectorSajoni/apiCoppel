@@ -28,12 +28,6 @@ export const login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(401).json({ message: 'Contraseña incorrecta' });
 
-    const token = jwt.sign({ id: user.id, rol: user.rol }, JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id_usuario: user.id, rol: user.rol }, JWT_SECRET, { expiresIn: '5h' });
     res.json({ token });
-};
-
-
-// -------------- Ejemplo de ruta protegida
-const protectedRoute = (req, res) => {
-    res.json({ message: `Hola ${req.user.username}, esta es una ruta protegida.` });
 };
