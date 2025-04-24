@@ -13,9 +13,10 @@ const router = Router();
 router.get('/empleados', verifyToken, verifyRol('admin'), getEmpleados);
 
 // Método para ver la información propia del empleado
-router.get('/empleadosId', verifyToken, verifyRol('empleado'), getEmpleadosId);
+router.get('/empleadosid', verifyToken, verifyRol('empleado'), getEmpleadosId);
 
 // Actualizar empleado
+/* { nombre, apellido, password } */
 router.put('/empleados', verifyToken, verifyRol('empleado'), putEmpleados);
 
 // Borrar empleado

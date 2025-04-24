@@ -13,12 +13,14 @@ const router = Router();
 router.get('/empresarios', verifyToken, verifyRol('admin'), getEmpresarios);
 
 // Para ver los empresarios que un empleado ha vinculado
-router.get('/empresariosId', verifyToken, verifyRol('empleado'), getEmpresariosId);
+router.get('/empresariosid', verifyToken, verifyRol('empleado'), getEmpresariosId);
 
 // Para que el empleado se vincule con un empresario
+/* { celular, nombre, apellido, cp } */
 router.post('/empresarios', verifyToken, verifyRol('empleado'), postEmpresarios);
 
 // Para que el empleado se desvincule con un empresario
+/* { celular_empresario } */
 router.delete('/empresarios', verifyToken, verifyRol('empleado'), deleteEmpresarios);
 
 export default router;

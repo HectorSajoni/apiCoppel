@@ -21,7 +21,7 @@ export const getEmpleadosId = async (req, res) => {
 
 
 export const putEmpleados = async (req, res) => {
-    const {nombre, apellido, password } = req.body;
+    const { nombre, apellido, password } = req.body;
     const { id_usuario } = req.user
     console.log("Se recibió una solicitud para editar al empleado " + id_usuario);
     try {
@@ -36,7 +36,7 @@ export const putEmpleados = async (req, res) => {
 };
 
 export const deleteEmpleados = async (req, res) => {
-    const { id_usuario } = req.body;
+    const { id_usuario } = req.user;
     console.log("Borrando empleados");
     try {
         let [{affectedRows}] = await db.execute(`delete from usuarios where id=${id_usuario}`);
