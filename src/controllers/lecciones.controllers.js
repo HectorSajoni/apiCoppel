@@ -12,7 +12,7 @@ async function obtenerLeccionesTotales(id_usuario) {
 }
 
 async function obtenerRecompensas() {
-    let [result] = await db.execute(`select * from recompensas order by llaves`);
+    let [result] = await db.execute(`select * from recompensas order by lecciones`);
     return result;
 }
 
@@ -21,8 +21,8 @@ export const getLeccionesTotales = async (req, res) => {
     console.log("Se hizo una solicitud de las lecciones totales que tiene el usuario " + id_usuario);
 
     try {
-        let llaves = await obtenerLeccionesTotales(id_usuario);
-        res.json({"lecciones":llaves});
+        let lecciones = await obtenerLeccionesTotales(id_usuario);
+        res.json({"lecciones":lecciones});
     } catch(err) {
         console.log(err);
         res.status(400).json({message: "Solicitud incorrecta"});
@@ -34,7 +34,7 @@ export const getRecompensas = async (req, res) => {
     console.log("Se hizo una solicitud de las recompensas que tiene el usuario " + id_usuario);
 
     try {
-        let llaves = await obtenerLlaves(id_usuario);
+        let llaves = await obtenerLeccionesTotales(id_usuario);
         let recompensas = await obtenerRecompensas();
         res.json({ "llaves":llaves, "recompensas":recompensas })
     } catch(err) {
