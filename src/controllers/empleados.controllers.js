@@ -31,6 +31,7 @@ export const putEmpleados = async (req, res) => {
         if(affectedRows===1) res.json({message: "Usuario actualizado"});
         else res.status(404).json({message: "Usuario no encontrado"});
     } catch(err) {
+        console.log(err);
         res.status(400).json({message: "Solicitud incorrecta"});
     }
 };
@@ -43,6 +44,7 @@ export const deleteEmpleados = async (req, res) => {
         if(affectedRows===1) res.json({message: "Usuario borrado"});
         else res.status(404).json({message: "Usuario no encontrado"});
     } catch(err) {
+        console.log(err);
         res.status(400).json({message: "Solicitud incorrecta"});
     }
 };
